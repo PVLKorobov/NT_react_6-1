@@ -1,0 +1,37 @@
+.input-form {
+    display: flex;
+    margin: 20px;
+
+    .input__wrapper {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .input__label {
+            margin: 5px;
+        }
+
+        .input__field {
+            height: 30px;
+        }
+    }
+
+    .submit-button {
+        width: 100px;
+        height: 36px;
+        margin: 10px;
+        margin-top: auto;
+        background-color: white;
+        border: 1px solid #94949481;
+        border-radius: 4px;
+
+        &:hover {
+            border-color: #4868ac;
+            cursor: pointer;
+        }
+
+        &:active {
+            background-color: #4868ac;
+        }
+    }
+}

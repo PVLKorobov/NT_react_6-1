@@ -1,0 +1,6 @@
+.clock-display {
+    padding: 0px;
+    margin: 20px;
+    display: flex;
+    list-style: none;
+}
