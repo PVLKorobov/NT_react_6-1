@@ -6,21 +6,19 @@ import './App.css'
 
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(moment().tz('Europe/Moscow'))
+  const [currentTime, setCurrentTime] = useState(moment.utc())
   const [clockRegistry, setClockRegistry] = useState(new Map())
-  const mskOffset = moment.tz('Europe/Moscow').utcOffset()
 
 
-  var timeTickInterval = setInterval(() => {
+  setInterval(() => {
     setCurrentTime(moment().tz('Europe/Moscow'))
   }, 1000)
 
 
-  function addClock(name, timezone) {
-    if (!clockRegistry.has(timezone)) {
-      const timezoneOffset = moment.tz(timezone).utcOffset() - mskOffset
+  function addClock(name, hoursOffset) {
+    if (!clockRegistry.has(hoursOffset)) {
       setClockRegistry(currentRegistry => {
-        currentRegistry.set(timezone, {name: name, timeOffset: timezoneOffset})
+        currentRegistry.set(hoursOffset, {name: name, timeOffset: hoursOffset})
         return new Map(currentRegistry)
       })
       return true
@@ -29,16 +27,15 @@ function App() {
     }
   }
 
-  function removeClock(timezone) {
-    if (clockRegistry.has(timezone)) {
+  function removeClock(hoursOffset) {
+    if (clockRegistry.has(hoursOffset)) {
       setClockRegistry(currentRegistry => {
-        currentRegistry.delete(timezone)
+        currentRegistry.delete(hoursOffset)
         return new Map(currentRegistry)
       })
     }
   }
 
-  addClock('Moscow', 'Europe/Moscow')
   return (
     <div className='contents'>
       <InputForm addClockCallback={addClock}/>
